@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.baseurl</groupId>
+    <artifactId>SeleniumPF</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <goal>test</goal>
+                </configuration>
+            </plugin>
+
+
+            <!--1!!!!!!!!!!!!!!!this maven plug in controls running the browsers through the command line!!!!-->
+            <!--use the "-P"  to run profile via maven
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- <user.path>${user.dir}</user.path>-->
+                        <xmlOutputDir>${project.build.directory}/surefire</xmlOutputDir>
+                        <!--                        <propertieslocation>${project.basedir}/src/main/java/config/configuration.properties</propertieslocation>-->
+
+                    </systemPropertyVariables>
+                    <systemPropertiesFile>.properties</systemPropertiesFile>
+
+                    <suiteXmlFiles>
+                        <suiteXmlFile>TestNG.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+
+                        <goals>
+
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--             display active profile in compile phase-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>show-profiles</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <!--                            <goal>active-profiles</goal>-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-settings -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-settings</artifactId>
+            <version>3.6.3</version>
+        </dependency>
+
+        <!--             add latest maven dependency instead of using default Maven 3-->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>apache-maven</artifactId>
+            <version>3.6.3</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.141.59</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.6.0</version>
+            <scope>test</scope>
+
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.0</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot SCREENSHOT DEPENDENCY -->
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.4</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.34.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- these are the logging dependencies for-->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+
+
+
+    </dependencies>
+
+
+    <!--    <profiles>-->
+    <!--        <profile>-->
+    <!--            <id>QA</id>-->
+    <!--            <activation>-->
+    <!--                <activeByDefault>true</activeByDefault>-->
+    <!--            </activation>-->
+    <!--            <properties>-->
+    <!--                <url>https://qa2-web.ncl.com</url>-->
+    <!--                <username>alexqa2_1</username>-->
+    <!--                <password>login123</password>-->
+    <!--            </properties>-->
+    <!--            <build>-->
+    <!--                <resources>-->
+    <!--                    <resource>-->
+    <!--                        <directory>resources</directory>-->
+    <!--                    </resource>-->
+    <!--                </resources>-->
+    <!--            </build>-->
+    <!--        </profile>-->
+    <!--        <profile>-->
+    <!--            <id>PREPROD</id>-->
+    <!--            <activation>-->
+    <!--                <property>-->
+    <!--                    <name>env</name>-->
+    <!--                    <value>preprod</value>-->
+    <!--                </property>-->
+    <!--            </activation>-->
+    <!--            <properties>-->
+    <!--                <url>https://preprod.ncl.com</url>-->
+    <!--                <username>alexprod</username>-->
+    <!--                <password>login123</password>-->
+    <!--            </properties>-->
+    <!--            <build>-->
+    <!--                <resources>-->
+    <!--                    <resource>-->
+    <!--                        <directory>resources</directory>-->
+    <!--                    </resource>-->
+    <!--                </resources>-->
+    <!--            </build>-->
+    <!--        </profile>-->
+    <!--        <profile>-->
+    <!--            <id>PROD</id>-->
+    <!--            <activation>-->
+    <!--                <property>-->
+    <!--                    <name>env</name>-->
+    <!--                    <value>prod</value>-->
+    <!--                </property>-->
+    <!--            </activation>-->
+    <!--            <properties>-->
+    <!--                <url>https://www.ncl.com</url>-->
+    <!--                <username>alexprod</username>-->
+    <!--                <password>login123</password>-->
+    <!--            </properties>-->
+    <!--            <build>-->
+    <!--                <resources>-->
+    <!--                    <resource>-->
+    <!--                        <directory>resources</directory>-->
+    <!--                    </resource>-->
+    <!--                </resources>-->
+    <!--            </build>-->
+    <!--        </profile>-->
+    <!--    </profiles>-->
+</project>
